@@ -26,6 +26,6 @@ runs:
         SHORT_SHA=$(echo ${{ github.sha }} | head -c 8)
         DATETIME=$(date -u +%Y%m%d%H%M%S)
         VERSION=${DATETIME}_${SHORT_SHA}.${GITHUB_RUN_NUMBER}
-        echo "::set-output name=version::${VERSION}"
-        IMAGE_TAG=$(echo "${{ inputs.registry-name }}/${{ inputs.image-name }}:${VERSION}" | tr '[:upper:]' '[:lower:]')
-        echo "::set-output name=image-tag::${IMAGE_TAG}"
+        echo "version=${VERSION}" >> $GITHUB_OUTPUT
+        IMAGE_TAG=$(echo "${{ inputs.registry-name }}/${{ inputs.image-name }}:${VERSION}" | tr '[:upper:]' '[:lower:]')        
+        echo "image-tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
